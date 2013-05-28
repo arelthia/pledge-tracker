@@ -6,7 +6,7 @@ Plugin URI: http://pintopproductions.com/pledge-tracker
 Description: This plugin allows you to track pledges and pledge payments. Pledgers are able to login and view their progress
 Author: Arelthia Phillips
 Author URI:http://pintopproductions.com
-Version:2.0.2
+Version:2.1
 
 
 ToDo: 
@@ -42,7 +42,7 @@ include('includes/pt-importer.php');  //import page
 include('includes/post-types.php');  //custom post types for the plugin
 include('includes/user-functions.php');  //custom post types for the plugin
 include('includes/pt-display-functions.php');  //custom post types for the plugin
-
+include_once('includes/updater/updater.php'); //include the updater class
 /*
  *enqueue front end scripts
  * 
@@ -114,3 +114,25 @@ if ((isset($_GET['post']) && (isset($_GET['action']) && $_GET['action'] == 'edit
  * 
  */ 
 add_filter( 'bulk_actions-' . 'edit-pledge', '__return_empty_array' );
+
+
+/*
+ * Initialize the Updater class
+ * 
+ */ 
+if (is_admin()) { // note the use of is_admin() to double check that this is happening in the admin
+    $config = array(
+        'slug' => plugin_basename(__FILE__), // this is the slug of your plugin
+        'proper_folder_name' => 'pledge-tracker', // this is the name of the folder your plugin lives in
+        'api_url' => 'https://api.github.com/repos/pintop/pledge-tracker', // the github API url of your github repo
+        'raw_url' => 'https://raw.github.com/pintop/pledge-tracker/master', // the github raw url of your github repo
+        'github_url' => 'https://github.com/pintop/pledge-tracker', // the github url of your github repo
+        'zip_url' => 'https://github.com/pintop/pledge-tracker/zipball/master', // the zip url of the github repo
+        'sslverify' => true, // wether WP should check the validity of the SSL cert when getting an update, see https://github.com/jkudish/WordPress-GitHub-Plugin-Updater/issues/2 and https://github.com/jkudish/WordPress-GitHub-Plugin-Updater/issues/4 for details
+        'requires' => '3.0', // which version of WordPress does your plugin require?
+        'tested' => '3.3', // which version of WordPress is your plugin tested up to?
+        'readme' => 'README.md', // which file to use as the readme for the version number
+        'access_token' => '', // Access private repositories by authorizing under Appearance > Github Updates when this example plugin is installed
+    );
+    new WP_GitHub_Updater($config);
+}
