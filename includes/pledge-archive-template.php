@@ -9,12 +9,6 @@ ob_start();
 ?>
 
 <?php require_once( get_stylesheet_directory() . '/header.php'); ?>
-<?php /*christ unveiled specific*/ ?>
-<div class="box_mid">
-	<div class="box_top"> <!--contains the background image-->
-		<h1> <?php do_action('pt_login_title'); ?></h1>
-		
-		<?php /*end christ unveiled specific*/ ?>   
 
 		<?php
 
@@ -54,15 +48,7 @@ ob_start();
 		}
 			
 		?>
-		<?php /*christ unveiled specific*/ ?>
-		
-		
-		<div class="clearer"></div>
-	</div>
-	<!--box_top--> 
-</div>
-<!--box_mid-->
-<?php /*end christ unveiled specific*/ ?>
+
 <?php
 include( get_stylesheet_directory() . '/footer.php');
 

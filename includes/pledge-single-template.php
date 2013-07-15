@@ -6,10 +6,7 @@ Template Name: Pledge
 ?>
          	
 <?php include( get_stylesheet_directory() . '/header.php'); ?>
-<?php /*christ unveiled specific*/ ?>
- <div class="box_mid">
-        <!--c    <div class="box_top"> ontains the background image-->
- <?php /*end christ unveiled specific*/ ?>  
+
  <div class="custom-cnt">
  <?php do_action('pt_pledge_top'); ?>
 </div>
@@ -60,15 +57,6 @@ Template Name: Pledge
 		
 	<?php endif; // do not delete ?>
 
-<?php /*christ unveiled specific*/ ?>
-  
-            
-              <div class="clearer"></div>
-          <!--  </div>
-            box_top--> 
-          </div>
-          <!--box_mid-->
-<?php /*end christ unveiled specific*/ ?>
 
 <?php 
 	

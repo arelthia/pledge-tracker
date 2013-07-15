@@ -10,7 +10,6 @@ Version:2.1
 
 
 ToDo: 
-Convert plugin to class
 utilize the prefix
 set from email
 upload users and initial pledge amount
