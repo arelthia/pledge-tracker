@@ -4,7 +4,7 @@
  *
  * @package     Pledge Tracker
  * @subpackage  Options
- * @copyright   Copyright (c) 2013, Arelthi Phillips
+ * @copyright   Copyright (c) 2013, Arelthia Phillips
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       2.0
  *

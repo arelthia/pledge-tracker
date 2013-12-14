@@ -4,7 +4,7 @@
  *
  * @package     Pledge Tracker
  * @subpackage  Display Functions
- * @copyright   Copyright (c) 2013, Arelthi Phillips
+ * @copyright   Copyright (c) 2013, Arelthia Phillips
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       2.0.2
 */
@@ -13,7 +13,7 @@ error_reporting(0);
  * display progress chart
  *
  */
-function Print_progress_chart($pt_post, $paidlist){
+function pt_print_progress_chart($pt_post, $paidlist){
 
 $custom = get_post_custom($pt_post);
 $pledgedamt= $custom["pamt"][0];
@@ -44,7 +44,7 @@ return '<style>#amt-paid{width:' . absint($percent) .'%!Important;}</style><div 
  * display payments on front end
  *
  */
-function Print_user_payments($paidlist){
+function pt_print_user_payments($paidlist){
     $html = '';
     $c = 0;
     $totalpaid = 0;
@@ -85,14 +85,14 @@ add_filter( 'archive_template', 'pt_archive_template' );
  *add a new page template 
  */
 
-function pintop_single_template( $single_template )
+function pt_pintop_single_template( $single_template )
 {
     if ( 'pledge' == get_post_type() ) {
         $single_template = dirname( __FILE__ ) . '/pledge-single-template.php';
     }
     return $single_template;
 }
-add_filter( 'single_template', 'pintop_single_template' );
+add_filter( 'single_template', 'pt_pintop_single_template' );
 
 
 /*

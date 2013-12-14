@@ -5,7 +5,9 @@ Template Name: Pledge
 */
 ?>
          	
-<?php include( get_stylesheet_directory() . '/header.php'); ?>
+<?php 
+get_header();
+/*include( get_stylesheet_directory() . '/header.php');*/ ?>
 
  <div class="custom-cnt">
  <?php do_action('pt_pledge_top'); ?>
@@ -31,10 +33,10 @@ Template Name: Pledge
 							<?php 
 							
 							$payments = get_post_meta($post->ID,"payment_data",true);
-							echo Print_progress_chart($post->ID, $payments);
+							echo pt_print_progress_chart($post->ID, $payments);
 							echo '<div>';
     						
-							echo Print_user_payments($payments);
+							echo pt_print_user_payments($payments);
 							echo '</div>';
 
 						
@@ -59,6 +61,6 @@ Template Name: Pledge
 
 
 <?php 
-	
-include( get_stylesheet_directory() . '/footer.php'); 
+get_footer();	
+/*include( get_stylesheet_directory() . '/footer.php'); */
 

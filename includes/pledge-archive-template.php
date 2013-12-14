@@ -8,7 +8,10 @@ ToDo:
 ob_start();
 ?>
 
-<?php require_once( get_stylesheet_directory() . '/header.php'); ?>
+<?php 
+get_header();
+
+/*require_once( get_stylesheet_directory() . '/header.php');*/ ?>
 
 		<?php
 
@@ -29,7 +32,7 @@ ob_start();
 	   		
 		    // get the users pledge id
 			$pledge_id = get_user_meta( $user->ID, 'pt_pledge_id', true );
-	   			//$pledge_id = get_user_pledge_id($user->ID);
+	   			//$pledge_id = pt_get_user_pledge_id($user->ID);
 	   		//	print_r($pledge_id);
 			//get the post based on the pledge id
 				$pledge = get_post( absint( $pledge_id ) );
@@ -50,6 +53,7 @@ ob_start();
 		?>
 
 <?php
-include( get_stylesheet_directory() . '/footer.php');
+get_footer();
+/*include( get_stylesheet_directory() . '/footer.php');*/
 
 ob_flush();	

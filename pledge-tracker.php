@@ -18,7 +18,7 @@ upload users and initial pledge amount
 /*****************
 * global variables
 *****************/
-setlocale(LC_MONETARY, "en_US");
+//setlocale(LC_MONETARY, "en_US");
 global $pt_prefix;
 //get the plugin settings from options table
 $pt_options = get_option('pt_settings');
@@ -38,8 +38,8 @@ define('PT_PLUGIN', plugin_dir_url( __FILE__ ) );
 
 include('includes/pt-options.php');  //settings page
 include('includes/pt-importer.php');  //import page
-include('includes/post-types.php');  //custom post types for the plugin
-include('includes/user-functions.php');  //custom post types for the plugin
+include('includes/pt-post-types.php');  //custom post types for the plugin
+include('includes/pt-user-functions.php');  //custom post types for the plugin
 include('includes/pt-display-functions.php');  //custom post types for the plugin
 
 /*

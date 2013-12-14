@@ -4,7 +4,7 @@
  *
  * @package     Pledge Tracker
  * @subpackage  Post Types
- * @copyright   Copyright (c) 2013, Arelthi Phillips
+ * @copyright   Copyright (c) 2013, Arelthia Phillips
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       2.0
 */
@@ -60,7 +60,7 @@ add_action('init', 'pt_register_pledge_posttype');
  * display payment fields
  *
  */
-function Print_payment_fileds($cnt, $pp_payments = null) {
+function pt_print_payment_fields($cnt, $pp_payments = null) {
 if ($pp_payments === null){
     $a = $b = $c = '';
 }else{
@@ -84,9 +84,9 @@ HTML
 } 
 
 //add custom field - payment
-add_action("add_meta_boxes", "object_init");
+add_action("add_meta_boxes", "pt_object_init");
 
-function object_init(){
+function pt_object_init(){
   add_meta_box("payment_meta_id", "Pledge Payments :","pt_payment_meta", "pledge", "advanced", "high");
 
 }
@@ -105,7 +105,7 @@ function pt_payment_meta(){
    if (count($data) > 0){
     foreach((array)$data as $p ){
         if (isset($p['amount']) || isset($p['date'])){
-            echo Print_payment_fileds($c,$p);
+            echo pt_print_payment_fields($c,$p);
             $c = $c +1;
         }
     }
@@ -122,7 +122,7 @@ $(document).ready(function() {
     var count = <?php echo $c; ?>;
     $(".add").click(function() {
         count = count + 1;
-        $('#payment_items').append('<? echo implode('',explode("\n",Print_payment_fileds('count'))); ?>'.replace(/count/g, count));
+        $('#payment_items').append('<? echo implode('',explode("\n",pt_print_payment_fields('count'))); ?>'.replace(/count/g, count));
         $('.pt-datepicker').datepicker();
         return false;
     });
@@ -138,9 +138,9 @@ echo '</div>';
 
 
 //Save payment
-add_action('save_post', 'save_detailss');
+add_action('save_post', 'pt_save_details');
 
-function save_detailss($post_id){ 
+function pt_save_details($post_id){ 
     global $post;
 
 
@@ -161,13 +161,13 @@ function save_detailss($post_id){
  *
  */
 
-add_action("admin_init", "users_meta_init");
+add_action("admin_init", "pt_users_meta_init");
 
-function users_meta_init(){
-  add_meta_box("users-meta", "Pledger", "users", "pledge", "normal", "high");
+function pt_users_meta_init(){
+  add_meta_box("users-meta", "Pledger", "pt_users", "pledge", "normal", "high");
 }
 
-function users(){
+function pt_users(){
   global $post;
   $custom = get_post_custom($post->ID);
   $users = $custom["users"][0];
@@ -214,9 +214,9 @@ function users(){
  * Save Meta Details
  *
  */
-add_action('save_post', 'save_userlist');
+add_action('save_post', 'pt_save_userlist');
 
-function save_userlist(){
+function pt_save_userlist(){
   global $post;
 
   if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {

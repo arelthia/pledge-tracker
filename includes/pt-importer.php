@@ -5,7 +5,7 @@
 *
 * @package     Pledge Tracker
 * @subpackage  Pt Importer
-* @copyright   Copyright (c) 2013, Arelthi Phillips
+* @copyright   Copyright (c) 2013, Arelthia Phillips
 * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
 * @since       2.0.1
 *
@@ -25,10 +25,10 @@ define('cnt',  '0');
 /*
 * Add Import page to Pledge menu
 */
-function menu_setup() {
+function pt_menu_setup() {
     add_submenu_page( 'edit.php?post_type=pledge', 'Importer', 'Import', 'manage_options', 'importer', 'pt_import_page' ); 
 }
-add_action('admin_menu', 'menu_setup');
+add_action('admin_menu', 'pt_menu_setup');
 
 
 

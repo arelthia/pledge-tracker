@@ -4,7 +4,7 @@
  *
  * @package     Pledge Tracker
  * @subpackage  User Functions
- * @copyright   Copyright (c) 2013, Arelthi Phillips
+ * @copyright   Copyright (c) 2013, Arelthia Phillips
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       2.0
 */
@@ -14,7 +14,7 @@
  *
  */
 
-function role_set (){
+function pt_role_set (){
 
     global $wp_roles;
 
@@ -26,7 +26,7 @@ function role_set (){
         ) );
 }
 
-add_action('init', 'role_set');
+add_action('init', 'pt_role_set');
 
 
 /*
@@ -94,7 +94,7 @@ if ( !function_exists('wp_new_user_notification') ) {
  * Get User Pledge ID
  * returns the $pt_pledge_id
  */
-function get_user_pledge_id($user_id){
+function pt_get_user_pledge_id($user_id){
     $meta_key = 'users';
     $meta_value = $user_id;
     $pt_pledge_obj = $wpdb->get_results( $wpdb->prepare("SELECT post_id FROM $wpdb->postmeta WHERE meta_key = '%s' AND meta_value = '%s' ", 
@@ -115,33 +115,33 @@ function get_user_pledge_id($user_id){
  *
  */
 
-function remove_from_profile( $contactmethods) {
+function pt_remove_from_profile( $contactmethods) {
     unset($contactmethods['aim']);
     unset($contactmethods['yim']);
     unset($contactmethods['jabber']);
     
     return $contactmethods;
 }
-add_filter('user_contactmethods', 'remove_from_profile', 10, 2); 
+add_filter('user_contactmethods', 'pt_remove_from_profile', 10, 2); 
 
 
 /*
  * Remove profile color options
  *
  */
-function admin_del_options() {
+function pt_admin_del_options() {
  global $_wp_admin_css_colors;
  $_wp_admin_css_colors = 0;
 }
 
-add_action('admin_head', 'admin_del_options');
+add_action('admin_head', 'pt_admin_del_options');
 
 
 /*
  * Remove personal options
  *
  */
-function hide_personal_options(){
+function pt_hide_personal_options(){
     echo "\n" . '<script type="text/javascript">jQuery(document).ready(function($) {
         $(\'form#your-profile > h3\').hide();
         $(\'form#your-profile\').show();
@@ -152,4 +152,4 @@ function hide_personal_options(){
 
 </script>' . "\n";
 }
-add_action('admin_head','hide_personal_options');
+add_action('admin_head','pt_hide_personal_options');
