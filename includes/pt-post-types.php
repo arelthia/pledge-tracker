@@ -69,18 +69,8 @@ if ($pp_payments === null){
     $c = $pp_payments['amount'];
 }
 return  <<<HTML
-<li>
-    <label>Date:</label>
-    <input type="text" class="pt-datepicker" id="payment_data[$cnt][date]" name="payment_data[$cnt][date]" size="8" value="$a"/>
-
-
-
-    <label>Payment :</label>
-    <input type="number" name="payment_data[$cnt][amount]" size="8"  step="0.01" value="$c" title="Payment - no dollar sign and no comma(s) - cents (.##) are optional" />
-    <span class="remove">Remove</span>
-</li>
-HTML
-;
+<li><label>Date:</label><input type="text" class="pt-datepicker" id="payment_data[$cnt][date]" name="payment_data[$cnt][date]" size="8" value="$a"/><label>Payment :</label><input type="number" name="payment_data[$cnt][amount]" size="8"  step="0.01" value="$c" title="Payment - no dollar sign and no comma(s) - cents (.##) are optional" /><span class="remove">Remove</span></li>
+HTML;
 } 
 
 //add custom field - payment
