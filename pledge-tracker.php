@@ -6,7 +6,7 @@ Plugin URI: http://pintopproductions.com/pledge-tracker
 Description: This plugin allows you to track pledges and pledge payments. Pledgers are able to login and view their progress
 Author: Arelthia Phillips
 Author URI:http://pintopproductions.com
-Version:2.2
+Version:2.3
 
 
 ToDo: 
@@ -90,8 +90,12 @@ function pt_ui_scripts() {
 	<script type="text/javascript">
 			jQuery(document).ready(function($)
 			{
-				var dateFormat = 'mm/dd/yy';
-				$('.pt-datepicker').datepicker();
+
+				/*if($('#payment_items .pt-datepicker').length > 0 ) {*/
+					var dateFormat = 'mm/dd/yy';
+					$('.pt-datepicker').datepicker();
+				//}
+
 			});
 	  </script>
 	<?php
