@@ -61,11 +61,31 @@ function pt_submenu_page() {
 			</label>	
 			<?php /* Ad rich text editor*/ pt_displayeditor(); ?>
 			</p>
-
+ 			<hr /><h2>Email Settings</h2> 
 			<p>
-			<h3>Custom Registration Email</h3>	
+				
+				<!--description is a wordpress class  / psc_settings is the name of my settings-->
+				<label class="description" for="pt_settings[pt_mail_from_name]">
+				<h3>Email From</h3>
+				</label>
+				
+				<!--Text Box: id and name must match the for-->
+				<input id="pt_settings[pt_mail_from_name]" name="pt_settings[pt_mail_from_name]" type="text" value="<?php echo $pt_options['pt_mail_from_name']; ?>" />
+			</p>
+			<p>
+				
+				<!--description is a wordpress class  / psc_settings is the name of my settings-->
+				<label class="description" for="pt_settings[pt_mail_from_address]">
+				<h3>Email From Address</h3>
+				</label>
+				
+				<!--Text Box: id and name must match the for-->
+				<input id="pt_settings[pt_mail_from_address]" name="pt_settings[pt_mail_from_address]" type="text" value="<?php echo $pt_options['pt_mail_from_address']; ?>" />
+			</p>
+			<p>
+			
 			<label class="description" for="pt_settings[pt_registration_email]">
-				Add text to go in the new user registration email.
+				<h3>Custom Registration Email (Add text to go in the new user registration email)</h3>
 			</label>
 			<textarea id="pt_settings[pt_registration_email]" name="pt_settings[pt_registration_email]" cols="75" rows="10" placeholdrt="Add your custom email text here" value="<?php echo $pt_options['pt_registration_email']; ?>"><?php echo $pt_options['pt_registration_email']; ?></textarea>
 			</p>
@@ -128,3 +148,28 @@ function pt_display_pledge_top(){
 }
 add_action('pt_pledge_top', 'pt_display_pledge_top');
 
+
+/*
+ * pt_mail_from changes the email address the registration email is sent from
+ */
+function pt_mail_from($old) {
+	global $pt_options; 
+ 	if (!empty($pt_options['pt_mail_from_address']))
+ 		return $pt_options['pt_mail_from_address'];
+
+ 	return $old;
+}
+add_filter('wp_mail_from', 'pt_mail_from');
+
+/*
+ * pt_mail_from_name changes the name the registration email is sent from
+ * if setting is not set the from name will be the blog name
+ */
+function pt_mail_from_name($old) {
+	global $pt_options; 
+	if (isset($pt_options['pt_mail_from_name']))
+		return $pt_options['pt_mail_from_name'];
+
+	return get_bloginfo('name');
+}
+add_filter('wp_mail_from_name', 'pt_mail_from_name');
